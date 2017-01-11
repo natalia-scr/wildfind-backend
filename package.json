@@ -1,0 +1,19 @@
+{
+  "name": "native-explorer-backend",
+  "version": "1.0.0",
+  "description": "back end to app Native Explorer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slaterJJ/native-explorer-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/slaterJJ/native-explorer-backend/issues"
+  },
+  "homepage": "https://github.com/slaterJJ/native-explorer-backend#readme"
+}
