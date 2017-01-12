@@ -1,14 +1,17 @@
-import animals from '../data';
-import parks from './data/parks';
-import sightings from './data/sightings';
-import {Sightings, Animals, Parks, Users} from '../models/model';
+let {animals, parks, sightings} = require('./data/data');
+const {Sightings, Animals, Parks, Users} = require('../models/models');
+const formatSightings = require('./data/formatData');
+const {DB} = require('../config.js');
 
-import mongoose from 'mongoose';
-import async from 'async';
-import log4js from 'log4js';
+const mongoose = require('mongoose');
+const async = require('async');
+const log4js = require('log4js');
 const logger = log4js.getLogger();
+console.log(sightings)
+sightings = formatSightings(sightings);
 
-mongoose.connect('mongodb://localhost/parkapp-test', function (err) {
+
+mongoose.connect(DB.dev, function (err) {
   if (!err) {
     logger.info('connected to database');
     mongoose.connection.db.dropDatabase();

@@ -1,4 +1,4 @@
-export const sightings = [
+module.exports = [
   {
       'animal_name': 'Blackbird',
       'date': '30/07/2011',

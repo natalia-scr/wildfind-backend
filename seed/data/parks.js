@@ -1,4 +1,4 @@
-export const parks = [{
+module.exports = [{
   name: 'Alexandra Park',
   location: 'Manchester',
   lat_lng: {

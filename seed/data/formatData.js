@@ -4,8 +4,8 @@ const request = require('superagent');
 const async = require('async');
 const fs = require('fs');
 
-export const formatSightings = () => {
-  sightings.map(sighting => {
+module.exports = (sightings) => {
+  return sightings.map(sighting => {
     sighting.park_name = 'Alexandra Park';
     sighting.lat_lng = {
       latitude: sighting.latitude,
@@ -92,5 +92,3 @@ const save = (err, res) => {
     console.log('file saved');
   });
 };
-
-getWikiData(save);
