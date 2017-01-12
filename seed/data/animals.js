@@ -1,4 +1,4 @@
-export const animals = [
+module.exports = [
   {
     'taxon_group': 'Bird',
     'latin_name': 'Aix galericulata',
