@@ -11,7 +11,10 @@ module.exports = (sightings) => {
       latitude: sighting.latitude,
       longitude: sighting.longitude
     };
-    sighting.date = new Date(sighting.date);
+    const day = sighting.date.slice(0, 2);
+    const month = sighting.date.slice(4, 6);
+    const year = sighting.date.slice(8);
+    sighting.date = new Date(`${month}/${day}/${year}`);
     return sighting;
   });
 };

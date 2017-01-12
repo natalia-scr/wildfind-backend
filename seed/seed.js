@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const async = require('async');
 const log4js = require('log4js');
 const logger = log4js.getLogger();
-console.log(sightings)
+
 sightings = formatSightings(sightings);
 
 
@@ -82,11 +82,12 @@ const addAnimals = (done) => {
   });
 };
 
-function addSightings (done) {
+const addSightings = (done) => {
   async.waterfall([
-    findParkId,
-    findAnimalId,
-    addIds
+    addParkId,
+    addAnimalId,
+    addUserId,
+    saveSightings
   ], (err) => {
     if (err) {
       logger.error('ERROR SEEDING :O');
@@ -96,9 +97,9 @@ function addSightings (done) {
     logger.info('DONE SEEDING!!');
     process.exit();
   });
-}
+};
 
-const findParkId = (done) => {
+const addParkId = (done) => {
   var parkArr = [];
   async.eachSeries(sightings, (sighting, cb) => {
     Parks.find({name: sighting.park_name}, (err, doc) => {
@@ -123,7 +124,7 @@ const findParkId = (done) => {
   });
 };
 
-const findAnimalId = (done) => {
+const addAnimalId = (done) => {
   var animalArr = [];
   async.eachSeries(sightings, (sighting, cb) => {
     Animals.find({common_name: sighting.animal_name}, (err, doc) => {
@@ -150,7 +151,22 @@ const findAnimalId = (done) => {
   });
 };
 
-const addIds = (done) => {
+const addUserId = (done) => {
+  async.eachSeries(sightings, (sighting, callback) => {
+    Users.find((err, doc) => {
+      if (err) {
+        return callback(err);
+      }
+      sighting.observer_id = doc[0]._id;
+      return callback();
+    });
+  }, (error) => {
+    if (error) return done(error);
+    return done(null);
+  });
+};
+
+const saveSightings = (done) => {
   async.eachSeries(sightings, (sighting, cb) => {
     var newSighting = new Sightings(sighting);
     newSighting.save((err) => {

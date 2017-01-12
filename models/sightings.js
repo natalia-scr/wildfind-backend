@@ -10,6 +10,10 @@ const SightingSchema = new Schema({
     type: Schema.Types.ObjectId,
     required: true
   },
+  observer_id: {
+    type: Schema.Types.ObjectId,
+    required: true
+  },
   lat_lng: {
     latitude: {
       type: Number,
