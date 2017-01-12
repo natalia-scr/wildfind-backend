@@ -1,12 +1,12 @@
-import express from 'express';
-import mongoose from 'mongoose';
+const express = require('express');
+const mongoose = require('mongoose');
 // const bodyParser = require('body-parser');
 const app = express();
 
-import db from 'mongodb://localhost/test-park-project';
-import {getAnimals, getSightings} from '../controllers/controllers';
+const {getAnimals, getSightings} = require('../controllers/controllers');
+const {DB} = require('../config.js');
 
-mongoose.connect(db, (err) => {
+mongoose.connect(DB.dev, (err) => {
   if (!err) console.log('connected to database');
   else console.log('error connecting to database');
 });
