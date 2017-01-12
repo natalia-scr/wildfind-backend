@@ -12,32 +12,32 @@ mongoose.connect(db, (err) => {
   else console.log('error connecting to database');
 });
 
-function getAnimals (param, callback) {
-  Animals.find(param, function (err, doc) {
+const getAnimals = (param, callback) => {
+  Animals.find(param, (err, doc) => {
     if (err) {
       return callback(err);
     }
     callback(null, doc);
   });
-}
+};
 
-function getSightings (callback) {
+const getSightings = (callback) => {
   Sightings.aggregate(
-   [ { $sample: { size: 10 } } ], function (err, doc) {
+   [ { $sample: { size: 10 } } ], (err, doc) => {
      if (err) {
        return callback(err);
      }
 
-     var filteredDoc = _.uniq(doc, false, function (sighting) {
+     var filteredDoc = _.uniq(doc, false, (sighting) => {
        return sighting.animal_id.toString();
      });
      callback(null, filteredDoc);
    });
-}
+};
 
 app.get('/animals', (req, res) => {
   const param = req.params;
-  getAnimals(param, function (err, data) {
+  getAnimals(param, (err, data) => {
     if (err) {
       return res.status(404).json({reason: 'Not Found'});
     }
@@ -46,7 +46,7 @@ app.get('/animals', (req, res) => {
 });
 
 app.get('/randomSightings', (req, res) => {
-  getSightings(function (err, data) {
+  getSightings((err, data) => {
     if (err) {
       return res.status(404).json({reason: 'Not Found'});
     }
@@ -54,6 +54,6 @@ app.get('/randomSightings', (req, res) => {
   });
 });
 
-app.listen(3000, function () {
+app.listen(3000, () => {
   console.log('listening on port 3000');
 });
