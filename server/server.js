@@ -1,35 +1,24 @@
 const express = require('express');
 const mongoose = require('mongoose');
-// const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const app = express();
 
-const {getAnimals, getSightings} = require('../controllers/controllers');
 const {DB} = require('../config.js');
+const router = require('../routes/apiRouter');
 
 mongoose.connect(DB.dev, (err) => {
   if (!err) console.log('connected to database');
   else console.log('error connecting to database');
 });
 
-app.get('/animals', (req, res) => {
-  const param = req.params;
-  getAnimals(param, (err, data) => {
-    if (err) {
-      return res.status(404).json({reason: 'Not Found'});
-    }
-    res.status(200).json({animals: data});
-  });
-});
+app.use(bodyParser.json());
 
-app.get('/randomSightings', (req, res) => {
-  getSightings((err, data) => {
-    if (err) {
-      return res.status(404).json({reason: 'Not Found'});
-    }
-    res.status(200).json({sightings: data});
-  });
+app.use('/api', router);
+
+app.get('/', function (req, res) {
+  res.send('WildFind App');
 });
 
 app.listen(3000, () => {
-  console.log('listening on port 3000');
+  console.log('tuned in to 3000 FM');
 });
