@@ -1,39 +1,15 @@
-const express = require('express');
-const mongoose = require('mongoose');
+import express from 'express';
+import mongoose from 'mongoose';
 // const bodyParser = require('body-parser');
 const app = express();
-const _ = require('underscore');
-const db = 'mongodb://localhost/test-park-project';
-const Animals = require('../models/animals');
-const Sightings = require('../models/sightings');
+
+import db from 'mongodb://localhost/test-park-project';
+import {getAnimals, getSightings} from '../controllers/controllers';
 
 mongoose.connect(db, (err) => {
   if (!err) console.log('connected to database');
   else console.log('error connecting to database');
 });
-
-const getAnimals = (param, callback) => {
-  Animals.find(param, (err, doc) => {
-    if (err) {
-      return callback(err);
-    }
-    callback(null, doc);
-  });
-};
-
-const getSightings = (callback) => {
-  Sightings.aggregate(
-   [ { $sample: { size: 10 } } ], (err, doc) => {
-     if (err) {
-       return callback(err);
-     }
-
-     var filteredDoc = _.uniq(doc, false, (sighting) => {
-       return sighting.animal_id.toString();
-     });
-     callback(null, filteredDoc);
-   });
-};
 
 app.get('/animals', (req, res) => {
   const param = req.params;
