@@ -1,19 +1,20 @@
 const animals = require('./animals');
-// const sightings = require('./sightings');
+const sightings = require('./sightings');
 const request = require('superagent');
 const async = require('async');
 const fs = require('fs');
 
-// const formatSightings = () => {
-//   sightings.map(sighting => {
-//     sighting.park_name = 'Alexandra Park';
-//     sighting.lat_lng = {
-//       latitude: sighting.latitude,
-//       longitude: sighting.longitude
-//     };
-//     sighting.date = new Date(sighting.date);
-//   });
-// };
+export const formatSightings = () => {
+  sightings.map(sighting => {
+    sighting.park_name = 'Alexandra Park';
+    sighting.lat_lng = {
+      latitude: sighting.latitude,
+      longitude: sighting.longitude
+    };
+    sighting.date = new Date(sighting.date);
+    return sighting;
+  });
+};
 
 const getWikiData = (callback) => {
   async.waterfall([
