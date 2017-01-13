@@ -2,7 +2,7 @@ const _ = require('underscore');
 
 const Sightings = require('../models/sightings');
 
-export const getSightings = (callback) => {
+module.exports = (callback) => {
   Sightings.aggregate(
    [ { $sample: { size: 10 } } ], (err, doc) => {
      if (err) {
