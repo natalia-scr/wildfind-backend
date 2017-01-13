@@ -2,10 +2,11 @@
   "name": "native-explorer-backend",
   "version": "1.0.0",
   "description": "back end to app Native Explorer",
-  "main": "server/server.js",
+  "main": "server.js",
+  "engine": "7.0.0",
   "scripts": {
     "test": "mocha ./spec",
-    "start": "node server.js"
+    "start": "node server/server.js"
   },
   "repository": {
     "type": "git",

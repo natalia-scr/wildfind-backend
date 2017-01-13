@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
 
-const {DB} = require('../config.js');
-const router = require('../routes/apiRouter');
+const {DB} = require('./config.js');
+const router = require('./routes/apiRouter');
 
 mongoose.connect(DB.dev, (err) => {
   if (!err) console.log('connected to database');
