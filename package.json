@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "back end to app Native Explorer",
   "main": "server.js",
-  "engineS": "7.0.0",
   "scripts": {
     "test": "mocha ./spec",
     "start": "node server/server.js"
