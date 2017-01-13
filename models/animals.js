@@ -21,6 +21,11 @@ const AnimalSchema = new Schema({
   photo: {
     type: String,
     required: true
+  },
+  park_ids: {
+    type: Array,
+    required: false,
+    default: [Schema.Types.ObjectId]
   }
 });
 

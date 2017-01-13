@@ -1,7 +1,11 @@
+var {ObjectId} = require('mongodb');
+
 const Animals = require('../models/animals');
 
-module.exports = (param, callback) => {
-  Animals.find(param, (err, doc) => {
+module.exports = (park, callback) => {
+  const query = park ? {park_ids: park} : {};
+  Animals.find(query, (err, doc) => {
+
     if (err) {
       return callback(err);
     }

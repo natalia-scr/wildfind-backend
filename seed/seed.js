@@ -10,7 +10,6 @@ const logger = log4js.getLogger();
 
 sightings = formatSightings(sightings);
 
-
 mongoose.connect(DB.dev, function (err) {
   if (!err) {
     logger.info('connected to database');
@@ -87,7 +86,8 @@ const addSightings = (done) => {
     addParkId,
     addAnimalId,
     addUserId,
-    saveSightings
+    saveSightings,
+    addParkIdToAnimal
   ], (err) => {
     if (err) {
       logger.error('ERROR SEEDING :O');
@@ -175,6 +175,36 @@ const saveSightings = (done) => {
       }
       return cb();
     });
+  }, (err) => {
+    if (err) {
+      return done(err);
+    }
+    return done(null);
+  });
+};
+
+const addParkIdToAnimal = (done) => {
+  const animalIds = [];
+
+  async.eachSeries(sightings, (sighting, cb) => {
+    if (animalIds.indexOf(sighting.animal_id) === -1) {
+      animalIds.push(sighting.animal_id);
+
+      Animals.findById(sighting.animal_id, (err, animal) => {
+        // animal = animal[0];
+        if (err) return cb(err);
+        animal.park_ids = animal.park_ids ? animal.park_ids.concat(sighting.park_id.toString()) : [sighting.park_id.toString()];
+        animal.save((err, updatedAnimal) => {
+          if (err) {
+            return cb(err);
+          }
+          console.log('save');
+          return cb(null);
+        });
+      });
+    } else {
+      cb(null);
+    }
   }, (err) => {
     if (err) {
       return done(err);
