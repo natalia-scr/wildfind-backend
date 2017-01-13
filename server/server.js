@@ -8,7 +8,10 @@ const router = require('../routes/apiRouter');
 
 mongoose.connect(DB.dev, (err) => {
   if (!err) console.log('connected to database');
-  else console.log('error connecting to database');
+  else {
+    process.exit();
+    console.log(err);
+  }
 });
 
 app.use(bodyParser.json());
@@ -19,6 +22,6 @@ app.get('/', function (req, res) {
   res.send('WildFind App');
 });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log('tuned in to 3000 FM');
 });

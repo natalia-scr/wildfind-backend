@@ -1,4 +1,7 @@
 module.exports = {
   getSightings: require('./getSightings'),
-  getAnimals: require('./getAnimals')
+  getAnimals: require('./getAnimals'),
+  addUser: require('./addUser'),
+  getUserSightings: require('./getUserSightings'),
+  addSighting: require('./addSighting')
 };
