@@ -4,8 +4,7 @@
   "description": "back end to app Native Explorer",
   "main": "server.js",
   "scripts": {
-    "test": "mocha ./spec",
-    "start": "node server/server.js"
+    "test": "mocha ./spec"
   },
   "repository": {
     "type": "git",
