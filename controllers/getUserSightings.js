@@ -14,7 +14,6 @@ module.exports = (user, finalCallback) => {
   });
 
   function findSightings (callback) {
-    console.log(user);
     Sightings.find({observer_id: user}, (err, doc) => {
       if (err) {
         return callback(err);
@@ -30,7 +29,6 @@ module.exports = (user, finalCallback) => {
           return mapCallback(err);
         }
         sighting = sighting.toJSON();
-        console.log(animals, 'animals');
         sighting.taxon_group = animals[0].taxon_group;
         sighting.latin_name = animals[0].latin_name;
         sighting.common_name = animals[0].common_name;

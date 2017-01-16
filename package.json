@@ -19,13 +19,13 @@
   "homepage": "https://github.com/slaterJJ/native-explorer-backend#readme",
   "dependencies": {
     "async": "^2.1.4",
-    "superagent": "^3.3.2",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "log4js": "^1.1.0",
     "mongoose": "^4.7.6",
+    "mongoose-random": "^0.1.1",
+    "superagent": "^3.3.2",
     "underscore": "^1.8.3"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

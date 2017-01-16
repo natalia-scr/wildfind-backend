@@ -1,8 +1,17 @@
 const express = require('express');
 const router = express.Router();
 
-const {getAnimals, getSightings, addUser, getUserSightings, addSighting, getAnimalSightings} = require('../controllers/controllers');
+const {getParks, getAnimals, getSightings, addUser, getUserSightings, addSighting, getAnimalSightings} = require('../controllers/controllers');
 const {Users} = require('../models/models');
+
+router.get('/parks', (req, res) => {
+  getParks((err, data) => {
+    if (err) {
+      return res.status(404).json({reason: 'Not Found'});
+    }
+    res.status(200).json({ parks: data });
+  });
+});
 
 router.get('/animals', (req, res) => {
   const park = req.query.park;
@@ -61,7 +70,7 @@ router.get('/animalsightings', (req, res) => {
 });
 
 router.get('/userlog', (req, res) => {
-  getUserSightings(req.query.user, (err, data) => {
+  getUserSightings(req.query.user_id, (err, data) => {
     if (err) {
       return res.status(404).json({reason: 'Not Found'});
     }
@@ -77,7 +86,5 @@ router.post('/addsighting', (req, res) => {
     res.status(200).json({sighting: data});
   });
 });
-
-
 
 module.exports = router;
