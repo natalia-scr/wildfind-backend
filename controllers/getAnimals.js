@@ -9,10 +9,12 @@ module.exports = function getAnimals (park, finalCallback) {
       addSightingTotal
     ],
     (err, data) => {
-      // call finalCallback
       if (err) {
-        console.log(err, 'Could not find animals');
-        finalCallback(err);
+        return finalCallback(err);
+      }
+      if (data.length === 0) {
+        err = 'No animals found';
+        return finalCallback(err);
       }
       finalCallback(null, data);
     }
@@ -21,6 +23,12 @@ module.exports = function getAnimals (park, finalCallback) {
   function findAnimals (callback) {
     const query = park ? {park_ids: park} : {};
     Animals.find(query, (err, doc) => {
+      if (park !== undefined) {
+        if (park.length !== 24) {
+          err = 'Invalid ID';
+          return callback(err);
+        }
+      }
       if (err) {
         return callback(err);
       }
@@ -29,8 +37,6 @@ module.exports = function getAnimals (park, finalCallback) {
   }
 
   function addSightingTotal (animals, callback) {
-      // async map over the articles
-      // find the comment count and add it
     async.map(animals, (animal, mapCallback) => {
       Sightings.find({animal_id: animal._id}, (err, sightings) => {
         if (err) {

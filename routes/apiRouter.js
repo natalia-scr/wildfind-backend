@@ -13,34 +13,16 @@ router.get('/parks', (req, res) => {
   });
 });
 
-router.get('/animals', (req, res) => {
+router.get('/animals', (req, res, next) => {
   const park = req.query.park;
-  console.log(park);
   getAnimals(park, (err, data) => {
     if (err) {
-      return res.status(404).json({reason: 'Not Found'});
+      if (err === 'No animals found') return res.status(404).json(({reason: 'No recordings at this park'}));
+      return next(err);
     }
     res.status(200).json({ animals: data });
   });
 });
-
-// router.get('/users', (req, res) => {
-//   getUsers((err, data) => {
-//     if (err) {
-//       return res.status(404).json({reason: 'Not Found'});
-//     }
-//     res.status(200).json({users: data});
-//   });
-// });
-//
-// function getUsers (callback) {
-//   Users.find((err, data) => {
-//     if (err) {
-//       callback(err);
-//     }
-//     callback(null, data);
-//   });
-// }
 
 router.post('/adduser', (req, res) => {
   addUser(req.body, (err, data) => {
