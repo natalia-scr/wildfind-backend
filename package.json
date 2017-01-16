@@ -27,5 +27,8 @@
     "superagent": "^3.3.2",
     "underscore": "^1.8.3"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "supertest": "^2.0.1"
+  }
 }
