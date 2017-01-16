@@ -146,7 +146,7 @@ const addSightings = (done) => {
       console.log(JSON.stringify(err));
       done(err);
     }
-    done(data);
+    done(null, data);
   });
 };
 
@@ -269,7 +269,7 @@ const addSightings = (done) => {
 const saveTestData = (cb) => {
   async.waterfall(
     [addDefaultUser, addParks, addAnimals, addSightings],
-    (data, err) => {
+    (err, data) => {
       if (err) console.log(err);
       else {
         console.log('Test data seeded successfully.');

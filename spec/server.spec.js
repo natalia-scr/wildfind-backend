@@ -10,7 +10,10 @@ const PORT = require('../config').PORT[process.env.NODE_ENV];
 const ROOT = `http://localhost:${PORT}`;
 
 const parkKeys = ['name', 'location', 'active', 'lat_lng', '__v', '_id'];
-const animalKeys = ['common_name', 'latin_name', 'taxon_group', 'photo', 'description', 'records', 'abundance', '__v', '_id', 'park_ids'];
+const animalKeys = ['common_name', 'latin_name', 'taxon_group', 'photo',
+'description', 'records', 'abundance', '__v', '_id', 'park_ids'];
+const sightingsKeys = ['_id', 'data', 'spatial_ref,', 'park_id', 'animal_id', 'observer_id',
+'obs_abundance', 'obs_comment', 'lat_lng', '__v'];
 
 const invalidID = {error: {message: 'Invalid ID'}};
 
@@ -109,39 +112,40 @@ describe.only('app', function () {
         });
     });
   });
-  describe('GET /sightings random sightings', function () {
-    it('should return all sightings with park ID', function (done) {
-      request(ROOT)
-        .get(`/api/sightings`)
-        .end(function (err, res) {
-          if (err) throw err;
-          expect(res.statusCode).to.equal(200);
-          expect(res.body.sightings.length).to.equal(4);
-          expect(res.body.sightings).to.be.an('array');
-          expect(res.body.sightings[0]).to.have.all.keys(animalKeys);
-          expect(res.body.sightings[0].park_ids[0]).to.equal(reqIDs.park);
-          done();
-        });
-    });
-    it('should return invalid ID message if the ID format is incorrect', (done) => {
-      request(ROOT)
-        .get(`/api/sightings?park=${reqIDs.invalid_id}`)
-        .end(function (err, res) {
-          if (err) throw err;
-          expect(res.statusCode).to.equal(400);
-          expect(res.body).to.eql(invalidID);
-          done();
-        });
-    });
-    it('should return no `No recordings at this park`', (done) => {
-      request(ROOT)
-        .get(`/api/sightings?park=${reqIDs.incorrect_id}`)
-        .end(function (err, res) {
-          if (err) throw err;
-          expect(res.statusCode).to.equal(404);
-          expect(res.body).to.eql({reason: 'No recordings at this park'});
-          done();
-        });
-    });
+  // describe('GET /sightings', function () {
+  //   it('should return a random group of sightings', function (done) {
+  //     request(ROOT)
+  //       .get(`/api/sightings`)
+  //       .end(function (err, res) {
+  //         if (err) throw err;
+  //         expect(res.statusCode).to.equal(200);
+  //         expect(res.body.sightings.length).to.be.above(1);
+  //         expect(res.body.sightings.length).to.be.below(11);
+  //         expect(res.body.sightings).to.be.an('array');
+  //         expect(res.body.sightings[0]).to.have.all.keys(sightingsKeys);
+  //         expect(res.body.sightings[0].park_id).to.equal(reqIDs.park);
+  //         done();
+  //       });
+  //   });
+    // it('should return invalid ID message if the ID format is incorrect', (done) => {
+    //   request(ROOT)
+    //     .get(`/api/sightings?park=${reqIDs.invalid_id}`)
+    //     .end(function (err, res) {
+    //       if (err) throw err;
+    //       expect(res.statusCode).to.equal(400);
+    //       expect(res.body).to.eql(invalidID);
+    //       done();
+    //     });
+    // });
+    // it('should return no `No recordings at this park`', (done) => {
+    //   request(ROOT)
+    //     .get(`/api/sightings?park=${reqIDs.incorrect_id}`)
+    //     .end(function (err, res) {
+    //       if (err) throw err;
+    //       expect(res.statusCode).to.equal(404);
+    //       expect(res.body).to.eql({reason: 'No recordings at this park'});
+    //       done();
+    //     });
+    // });
   });
 });
