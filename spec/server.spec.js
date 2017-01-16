@@ -98,9 +98,44 @@ describe.only('app', function () {
           done();
         });
     });
-    it('should no `No Animals Found at that Park`', (done) => {
+    it('should return no `No recordings at this park`', (done) => {
       request(ROOT)
         .get(`/api/animals?park=${reqIDs.incorrect_id}`)
+        .end(function (err, res) {
+          if (err) throw err;
+          expect(res.statusCode).to.equal(404);
+          expect(res.body).to.eql({reason: 'No recordings at this park'});
+          done();
+        });
+    });
+  });
+  describe('GET /sightings random sightings', function () {
+    it('should return all sightings with park ID', function (done) {
+      request(ROOT)
+        .get(`/api/sightings`)
+        .end(function (err, res) {
+          if (err) throw err;
+          expect(res.statusCode).to.equal(200);
+          expect(res.body.sightings.length).to.equal(4);
+          expect(res.body.sightings).to.be.an('array');
+          expect(res.body.sightings[0]).to.have.all.keys(animalKeys);
+          expect(res.body.sightings[0].park_ids[0]).to.equal(reqIDs.park);
+          done();
+        });
+    });
+    it('should return invalid ID message if the ID format is incorrect', (done) => {
+      request(ROOT)
+        .get(`/api/sightings?park=${reqIDs.invalid_id}`)
+        .end(function (err, res) {
+          if (err) throw err;
+          expect(res.statusCode).to.equal(400);
+          expect(res.body).to.eql(invalidID);
+          done();
+        });
+    });
+    it('should return no `No recordings at this park`', (done) => {
+      request(ROOT)
+        .get(`/api/sightings?park=${reqIDs.incorrect_id}`)
         .end(function (err, res) {
           if (err) throw err;
           expect(res.statusCode).to.equal(404);
