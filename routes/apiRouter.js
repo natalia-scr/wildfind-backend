@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {getAnimals, getSightings, addUser, getUserSightings, addSighting} = require('../controllers/controllers');
+const {getAnimals, getSightings, addUser, getUserSightings, addSighting, getAnimalSightings} = require('../controllers/controllers');
 const {Users} = require('../models/models');
 
 router.get('/animals', (req, res) => {
@@ -42,7 +42,7 @@ router.post('/adduser', (req, res) => {
   });
 });
 
-router.get('/random-sightings', (req, res) => {
+router.get('/sightings', (req, res) => {
   getSightings((err, data) => {
     if (err) {
       return res.status(404).json({reason: 'Not Found'});
@@ -51,7 +51,16 @@ router.get('/random-sightings', (req, res) => {
   });
 });
 
-router.get('/sightings', (req, res) => {
+router.get('/animalsightings', (req, res) => {
+  getAnimalSightings(req.query.animal_id, (err, data) => {
+    if (err) {
+      return res.status(404).json({reason: 'Not Found'});
+    }
+    res.status(200).json({sightings: data});
+  });
+});
+
+router.get('/userlog', (req, res) => {
   getUserSightings(req.query.user, (err, data) => {
     if (err) {
       return res.status(404).json({reason: 'Not Found'});
@@ -68,5 +77,7 @@ router.post('/addsighting', (req, res) => {
     res.status(200).json({sighting: data});
   });
 });
+
+
 
 module.exports = router;
