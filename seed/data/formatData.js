@@ -5,7 +5,7 @@ const async = require('async');
 const fs = require('fs');
 
 module.exports = (sightings) => {
-  return sightings.map(sighting => {
+  return sightings.map((sighting) => {
     sighting.park_name = 'Alexandra Park';
     sighting.lat_lng = {
       latitude: sighting.latitude,

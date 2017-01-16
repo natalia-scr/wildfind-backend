@@ -1,7 +1,7 @@
 const {Sightings} = require('../models/models');
 
 module.exports = (sighting, callback) => {
-  console.log(sighting);
+  console.log(sighting, 'urmams sighting');
   const newSighting = new Sightings({
     park_id: sighting.park_id,
     animal_id: sighting.animal_id,
@@ -10,11 +10,12 @@ module.exports = (sighting, callback) => {
     date: new Date(),
     obs_abundance: sighting.obs_abundance
   });
-  console.log(newSighting);
+
   newSighting.save((err) => {
     if (err) {
       return callback(err);
     }
+    console.log(newSighting);
     callback(null, newSighting);
   });
 };
