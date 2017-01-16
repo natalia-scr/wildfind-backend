@@ -1,7 +1,6 @@
 const {Sightings} = require('../models/models');
 
 module.exports = (sighting, callback) => {
-  console.log(sighting, 'urmams sighting');
   const newSighting = new Sightings({
     park_id: sighting.park_id,
     animal_id: sighting.animal_id,

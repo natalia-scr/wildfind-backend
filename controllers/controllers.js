@@ -3,5 +3,6 @@ module.exports = {
   getAnimals: require('./getAnimals'),
   addUser: require('./addUser'),
   getUserSightings: require('./getUserSightings'),
-  addSighting: require('./addSighting')
+  addSighting: require('./addSighting'),
+  getAnimalSightings: require('./getAnimalSightings')
 };
