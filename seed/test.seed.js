@@ -84,7 +84,7 @@ let sightings =  [{
    'obs_comment': '',
    'latitude': 53.451585,
    'longitude': -2.2511283
- }]
+ }];
 
 sightings = formatSightings(sightings);
 
@@ -141,14 +141,12 @@ const addSightings = (done) => {
     addUserId,
     saveSightings,
     addParkIdToAnimal
-  ], (err) => {
+  ], (err, data) => {
     if (err) {
-      logger.error('ERROR SEEDING :O');
       console.log(JSON.stringify(err));
-      process.exit();
+      done(err);
     }
-    logger.info('DONE SEEDING!!');
-    process.exit();
+    done(data);
   });
 };
 
@@ -179,10 +177,10 @@ const addSightings = (done) => {
 
  const addAnimalId = (done) => {
    var animalArr = [];
-   async.eachSeries(sightings, (sighting, cb) => {
+   async.eachSeries(sightings, (sighting, eachCallback) => {
      Animals.find({common_name: sighting.animal_name}, (err, doc) => {
        if (err) {
-         return cb(err);
+         return eachCallback(err);
        }
        if (doc.length) {
          animalArr.push({name: sighting.animal_name, id: doc[0]._id});
@@ -196,7 +194,7 @@ const addSightings = (done) => {
          });
        });
 
-       return cb();
+       return eachCallback();
      });
    }, (error) => {
      if (error) return done(error);
@@ -205,13 +203,13 @@ const addSightings = (done) => {
  };
 
  const addUserId = (done) => {
-   async.eachSeries(sightings, (sighting, callback) => {
+   async.eachSeries(sightings, (sighting, eachCallback) => {
      Users.find((err, doc) => {
        if (err) {
-         return callback(err);
+         return eachCallback(err);
        }
        sighting.observer_id = doc[0]._id;
-       return callback();
+       return eachCallback();
      });
    }, (error) => {
      if (error) return done(error);
@@ -220,19 +218,19 @@ const addSightings = (done) => {
  };
 
  const saveSightings = (done) => {
-   async.eachSeries(sightings, (sighting, cb) => {
+   async.eachSeries(sightings, (sighting, eachCallback) => {
      var newSighting = new Sightings(sighting);
      newSighting.save((err) => {
        if (err) {
-         return cb(err);
+         return eachCallback(err);
        }
-       return cb();
+       return eachCallback();
      });
    }, (err) => {
      if (err) {
        return done(err);
      }
-     return done(null);
+     return done();
    });
  };
 
@@ -250,7 +248,6 @@ const addSightings = (done) => {
            if (err) {
              return cb(err);
            }
-           console.log('save');
            return cb(null);
          });
        });
@@ -261,18 +258,24 @@ const addSightings = (done) => {
      if (err) {
        return done(err);
      }
-     return done(null);
+     let ids = {};
+     ids.animal = sightings[0].animal_id.toString();
+     ids.park = sightings[0].park_id.toString();
+     ids.user = sightings[0].observer_id.toString();
+     return done(null, ids);
    });
  };
 
 const saveTestData = (cb) => {
-  async.waterfall([addDefaultUser, addParks, addAnimals, addSightings], (err, ids) => {
-    if (err) console.log(err);
-    else {
-      console.log('Test data seeded successfully.');
-      cb(ids);
-    }
-  });
+  async.waterfall(
+    [addDefaultUser, addParks, addAnimals, addSightings],
+    (data, err) => {
+      if (err) console.log(err);
+      else {
+        console.log('Test data seeded successfully.');
+        cb(data);
+      }
+    });
 };
 
 module.exports = saveTestData;

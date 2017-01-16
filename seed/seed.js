@@ -90,12 +90,10 @@ const addSightings = (done) => {
     addParkIdToAnimal
   ], (err) => {
     if (err) {
-      logger.error('ERROR SEEDING :O');
       console.log(JSON.stringify(err));
-      process.exit();
+      done();
     }
-    logger.info('DONE SEEDING!!');
-    process.exit();
+    done();
   });
 };
 
@@ -197,7 +195,6 @@ const addParkIdToAnimal = (done) => {
           if (err) {
             return cb(err);
           }
-          console.log('save');
           return cb(null);
         });
       });

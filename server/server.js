@@ -11,7 +11,7 @@ const PORT = config.PORT[process.env.NODE_ENV] || process.env.PORT;
 const router = require('../routes/apiRouter');
 
 mongoose.connect(db, (err) => {
-  if (!err) console.log('connected to database');
+  if (!err) console.log(`connected to database: ${db}`);
   else {
     process.exit();
     console.log(err);
