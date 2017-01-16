@@ -56,7 +56,6 @@ router.get('/sightings', (req, res) => {
     if (err) {
       return res.status(404).json({reason: 'Not Found'});
     }
-    // console.log(data, 'final data');
     return res.status(200).json({sightings: data});
   });
 });
@@ -64,10 +63,8 @@ router.get('/sightings', (req, res) => {
 router.post('/addsighting', (req, res) => {
   addSighting(req.body.sighting, (err, data) => {
     if (err) {
-      console.log(err, 'err');
       return res.status(404).json({reason: 'Not Found'});
     }
-    console.log(data, '*******************************************');
     res.status(200).json({sighting: data});
   });
 });
