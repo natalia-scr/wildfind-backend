@@ -32,6 +32,6 @@ app.use(function (err, req, res, next) {
   else return res.status(404).send({reason: 'Not Found'});
 });
 
-app.listen(process.env.PORT || PORT, () => {
+app.listen(PORT, () => {
   console.log(`tuned in to ${PORT} FM`);
 });
