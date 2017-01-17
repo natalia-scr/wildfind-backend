@@ -43,7 +43,6 @@ const animals = [{
 let sightings =  [{
    'animal_name': 'Redwing',
    'date': '30/07/2011',
-   'spatial_ref': 'SJ83449511',
    'obs_abundance': 1,
    'obs_comment': '',
    'latitude': 53.452484,
@@ -52,7 +51,6 @@ let sightings =  [{
  {
    'animal_name': 'Redwing',
    'date': '28/01/2012',
-   'spatial_ref': 'SJ83419535',
    'obs_abundance': 1,
    'obs_comment': '',
    'latitude': 53.454641,
@@ -61,7 +59,6 @@ let sightings =  [{
  {
    'animal_name': 'Feral Pigeon',
    'date': '30/07/2011',
-   'spatial_ref': 'SJ83589482',
    'obs_abundance': 1,
    'obs_comment': '',
    'latitude': 53.449882,
@@ -70,7 +67,6 @@ let sightings =  [{
  {
    'animal_name': 'Tufted Duck',
    'date': '28/01/2012',
-   'spatial_ref': 'SJ83419535',
    'obs_abundance': 2,
    'obs_comment': '',
    'latitude': 53.454641,
@@ -79,7 +75,6 @@ let sightings =  [{
  {
    'animal_name': 'Mandarin Duck',
    'date': '28/01/2012',
-   'spatial_ref': 'SJ83429501',
    'obs_abundance': 1,
    'obs_comment': '',
    'latitude': 53.451585,

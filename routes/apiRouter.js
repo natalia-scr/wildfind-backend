@@ -49,28 +49,43 @@ router.get('/sightings', (req, res, next) => {
   });
 });
 
-router.get('/animalsightings', (req, res) => {
+router.get('/animalsightings', (req, res, next) => {
   getAnimalSightings(req.query.animal_id, (err, data) => {
     if (err) {
-      return res.status(404).json({reason: 'Not Found'});
+      if (err === 'No animal query passed') {
+        return res.status(400).json({error: {message: err}});
+      }
+      if (err === 'No sightings recorded') {
+        return res.status(404).json({error: {message: err}});
+      }
+      return next(err);
     }
     res.status(200).json({sightings: data});
   });
 });
 
-router.get('/userlog', (req, res) => {
+router.get('/userlog', (req, res, next) => {
   getUserSightings(req.query.user_id, (err, data) => {
     if (err) {
-      return res.status(404).json({reason: 'Not Found'});
+      if (err === 'No user query passed') {
+        return res.status(400).json({error: {message: err}});
+      }
+      if (err === 'No sightings recorded') {
+        return res.status(404).json({error: {message: err}});
+      }
+      return next(err);
     }
     return res.status(200).json({sightings: data});
   });
 });
 
-router.post('/addsighting', (req, res) => {
+router.post('/addsighting', (req, res, next) => {
   addSighting(req.body.sighting, (err, data) => {
     if (err) {
-      return res.status(404).json({reason: 'Not Found'});
+      if (err === 'Above maximum comment length') {
+        return res.status(400).json({error: {message: err}});
+      }
+      return next(err);
     }
     res.status(200).json({sighting: data});
   });

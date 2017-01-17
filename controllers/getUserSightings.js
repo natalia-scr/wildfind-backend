@@ -3,6 +3,9 @@ const async = require('async');
 const {Sightings, Animals} = require('../models/models');
 
 module.exports = (user, finalCallback) => {
+  if (!user) {
+    return finalCallback('No user query passed');
+  }
   async.waterfall([
     findSightings,
     addAnimalInfo
@@ -15,6 +18,11 @@ module.exports = (user, finalCallback) => {
 
   function findSightings (callback) {
     Sightings.find({observer_id: user}, (err, doc) => {
+      if (!doc) {
+        err = 'Invalid ID';
+      } else if (!doc.length) {
+        err = 'No sightings recorded';
+      }
       if (err) {
         return callback(err);
       }
