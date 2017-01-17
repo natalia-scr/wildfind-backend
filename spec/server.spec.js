@@ -16,7 +16,6 @@ const sightingsKeys = ['_id', 'date', 'spatial_ref', 'park_id', 'animal_id', 'ob
 'obs_abundance', 'obs_comment', 'lat_lng', '__v'];
 
 const invalidID = {error: {message: 'Invalid ID'}};
-const notFound = {error: {message: 'No recordings at this park'}};
 
 describe.only('app', function () {
   let reqIDs = {};
@@ -113,6 +112,7 @@ describe.only('app', function () {
         });
     });
   });
+
   describe(`GET /sightings`, function () {
     it('should return a random group of sightings', function (done) {
       request(ROOT)
@@ -154,9 +154,42 @@ describe.only('app', function () {
         .end(function (err, res) {
           if (err) throw err;
           expect(res.statusCode).to.equal(404);
-          expect(res.body).to.eql(notFound);
+          expect(res.body).to.eql({error: {message: 'No recordings at this park'}});
           done();
         });
     });
   });
+
+  describe(`GET /adduser`, function () {
+    it('should return the new user', function (done) {
+      request(ROOT)
+        .post(`/api/adduser`)
+        .send({name: 'Joe Bloggs'})
+        .expect('Content-Type', /json/)
+        .end(function (err, res) {
+          if (err) throw err;
+          expect(res.statusCode).to.equal(200);
+          done();
+        });
+    });
+    it('should reject names over 15 characters', function (done) {
+      request(ROOT)
+      .post(`/api/adduser`)
+      .send({name: 'Joe Bloggssssssssssssssssssssss'})
+      .end(function (err, res) {
+        if (err) throw err;
+        expect(res.status).to.equal(400)
+      })
+    })
+  });
+
+  describe(`GET /animalsightings`, function () {
+    it('should return the new user', function (done) {
+      request(ROOT)
+      .get(`/api/animalsightings`)
+      .end(function (err, res) {
+        if (err) throw err;
+        expect(res.status).to.equal(200);
+      });
+
 });

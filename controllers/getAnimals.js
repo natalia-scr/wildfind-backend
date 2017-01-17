@@ -3,17 +3,21 @@ const Animals = require('../models/animals');
 const Sightings = require('../models/sightings');
 
 module.exports = function getAnimals (park, finalCallback) {
+  if (park) {
+    if (park.length !== 24) {
+      return finalCallback('Invalid ID');
+    }
+  }
   async.waterfall(
     [
       findAnimals,
       addSightingTotal
     ],
     (err, data) => {
-      if (err) {
-        return finalCallback(err);
-      }
       if (data.length === 0) {
-        err = 'No animals found';
+        err = 'No recordings at this park';
+      }
+      if (err) {
         return finalCallback(err);
       }
       finalCallback(null, data);
@@ -23,12 +27,6 @@ module.exports = function getAnimals (park, finalCallback) {
   function findAnimals (callback) {
     const query = park ? {park_ids: park} : {};
     Animals.find(query, (err, doc) => {
-      if (park !== undefined) {
-        if (park.length !== 24) {
-          err = 'Invalid ID';
-          return callback(err);
-        }
-      }
       if (err) {
         return callback(err);
       }
