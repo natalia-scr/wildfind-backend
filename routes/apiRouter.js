@@ -6,7 +6,9 @@ const {getParks, getAnimals, getSightings, addUser, getUserSightings, addSightin
 router.post('/adduser', (req, res) => {
   addUser(req.body, (err, data) => {
     if (err) {
-      return res.status(404).json({reason: 'Not Found'});
+      if (err === 'Name too long') {
+        return res.status(400).json({error: {message: err}});
+      }
     }
     res.status(200).json({user: data});
   });
@@ -15,7 +17,7 @@ router.post('/adduser', (req, res) => {
 router.get('/parks', (req, res) => {
   getParks((err, data) => {
     if (err) {
-      return res.status(404).json({reason: 'Not Found'});
+      return res.status(404).json({error: {message: err}});
     }
     res.status(200).json({ parks: data });
   });
@@ -25,7 +27,7 @@ router.get('/animals', (req, res, next) => {
   const park = req.query.park;
   getAnimals(park, (err, data) => {
     if (err) {
-      if (err === 'No recordings at this park') { return res.status(404).json(({reason: err})); }
+      if (err === 'No recordings at this park') { return res.status(404).json(({error: {message: err}})); }
       return next(err);
     }
     res.status(200).json({ animals: data });

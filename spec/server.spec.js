@@ -107,7 +107,7 @@ describe.only('app', function () {
         .end(function (err, res) {
           if (err) throw err;
           expect(res.statusCode).to.equal(404);
-          expect(res.body).to.eql({reason: 'No recordings at this park'});
+          expect(res.body).to.eql({error: {message: 'No recordings at this park'}});
           done();
         });
     });
@@ -178,18 +178,23 @@ describe.only('app', function () {
       .send({name: 'Joe Bloggssssssssssssssssssssss'})
       .end(function (err, res) {
         if (err) throw err;
-        expect(res.status).to.equal(400)
-      })
-    })
+        expect(res.status).to.equal(400);
+        expect(res.body).to.eql({error: {message: 'Name too long'}});
+        done();
+      });
+    });
   });
 
   describe(`GET /animalsightings`, function () {
     it('should return the new user', function (done) {
       request(ROOT)
-      .get(`/api/animalsightings`)
+      .get(`/api/animalsightings?animal_id=${reqIDs.animal}`)
       .end(function (err, res) {
         if (err) throw err;
         expect(res.status).to.equal(200);
+        done();
       });
+    });
+  });
 
 });
