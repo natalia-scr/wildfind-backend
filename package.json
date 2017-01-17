@@ -4,7 +4,7 @@
   "description": "back end to app Native Explorer",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./spec",
+    "test": "mocha ./spec --recursive --timeout 10000",
     "start": "node server/server.js"
   },
   "repository": {

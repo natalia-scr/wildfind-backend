@@ -27,9 +27,8 @@ app.get('/', function (req, res) {
 });
 
 app.use(function (err, req, res, next) {
-  if (err === 'Incorrect Format') return res.status(422).json({error: {'ID is not in the data': {comment: 'New Comment'}}});
   if (err === 'Invalid ID') return res.status(400).json({error: {message: 'Invalid ID'}});
-  else return res.status(404).send({reason: 'Not Found'});
+  else return res.status(404).json({reason: 'Not Found'});
 });
 
 app.listen(process.env.PORT || PORT, () => {

@@ -6,6 +6,7 @@ module.exports = (user, callback) => {
     if (err) {
       return callback(err);
     }
-    callback(null, newUser);
+    var userId = newUser._id;
+    callback(null, userId);
   });
 };
