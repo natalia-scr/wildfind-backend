@@ -1,6 +1,6 @@
 const async = require('async');
-const Animals = require('../models/animals');
-const Sightings = require('../models/sightings');
+const {Animals} = require('../models/models');
+const {Sightings} = require('../models/models');
 
 module.exports = function getAnimals (park, finalCallback) {
   if (park) {

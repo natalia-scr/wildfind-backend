@@ -1,4 +1,4 @@
-const Sightings = require('../models/sightings');
+const {Sightings} = require('../models/models');
 
 module.exports = (animalId, callback) => {
   if (!animalId) {

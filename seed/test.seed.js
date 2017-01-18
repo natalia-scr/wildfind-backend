@@ -1,10 +1,8 @@
 const async = require('async');
+
 const {Sightings, Animals, Parks, Users} = require('../models/models');
 const parks = require('./data/parks');
-
 const formatSightings = require('./data/formatData');
-const log4js = require('log4js');
-const logger = log4js.getLogger();
 
 const animals = [{
   'taxon_group': 'Bird',
@@ -38,48 +36,48 @@ const animals = [{
   'photo': 'https://upload.wikimedia.org/wikipedia/commons/e/eb/Tufted-Duck-male-female.jpg',
   'smallImg': 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Tufted-Duck-male-female.jpg/144px-Tufted-Duck-male-female.jpg',
   'description': 'The Tufted duck (Aythya fuligula) is a small diving duck with a population of close to one million birds. The scientific name is derived from Ancient Greek aithuia an unidentified seabird mentioned by authors including Hesychius and Aristotle, and Latin, fuligo \'soot\' and gula \'throat\'.'
-}]
+}];
 
-let sightings =  [{
-   'animal_name': 'Redwing',
-   'date': '30/07/2011',
-   'obs_abundance': 1,
-   'obs_comment': '',
-   'latitude': 53.452484,
-   'longitude': -2.2508325
- },
- {
-   'animal_name': 'Redwing',
-   'date': '28/01/2012',
-   'obs_abundance': 1,
-   'obs_comment': '',
-   'latitude': 53.454641,
-   'longitude': -2.251297
- },
- {
-   'animal_name': 'Feral Pigeon',
-   'date': '30/07/2011',
-   'obs_abundance': 1,
-   'obs_comment': '',
-   'latitude': 53.449882,
-   'longitude': -2.2487091
- },
- {
-   'animal_name': 'Tufted Duck',
-   'date': '28/01/2012',
-   'obs_abundance': 2,
-   'obs_comment': '',
-   'latitude': 53.454641,
-   'longitude': -2.251297
- },
- {
-   'animal_name': 'Mandarin Duck',
-   'date': '28/01/2012',
-   'obs_abundance': 1,
-   'obs_comment': '',
-   'latitude': 53.451585,
-   'longitude': -2.2511283
- }];
+let sightings = [{
+  'animal_name': 'Redwing',
+  'date': '30/07/2011',
+  'obs_abundance': 1,
+  'obs_comment': '',
+  'latitude': 53.452484,
+  'longitude': -2.2508325
+},
+  {
+    'animal_name': 'Redwing',
+    'date': '28/01/2012',
+    'obs_abundance': 1,
+    'obs_comment': '',
+    'latitude': 53.454641,
+    'longitude': -2.251297
+  },
+  {
+    'animal_name': 'Feral Pigeon',
+    'date': '30/07/2011',
+    'obs_abundance': 1,
+    'obs_comment': '',
+    'latitude': 53.449882,
+    'longitude': -2.2487091
+  },
+  {
+    'animal_name': 'Tufted Duck',
+    'date': '28/01/2012',
+    'obs_abundance': 2,
+    'obs_comment': '',
+    'latitude': 53.454641,
+    'longitude': -2.251297
+  },
+  {
+    'animal_name': 'Mandarin Duck',
+    'date': '28/01/2012',
+    'obs_abundance': 1,
+    'obs_comment': '',
+    'latitude': 53.451585,
+    'longitude': -2.2511283
+  }];
 
 sightings = formatSightings(sightings);
 
@@ -145,121 +143,116 @@ const addSightings = (done) => {
   });
 };
 
- const addParkId = (done) => {
-   var parkArr = [];
-   async.eachSeries(sightings, (sighting, cb) => {
-     Parks.find({name: sighting.park_name}, (err, doc) => {
-       if (err) {
-         return cb(err);
-       }
-       parkArr.push({name: sighting.park_name, id: doc[0]._id});
+const addParkId = (done) => {
+  var parkArr = [];
+  async.eachSeries(sightings, (sighting, cb) => {
+    Parks.find({name: sighting.park_name}, (err, doc) => {
+      if (err) {
+        return cb(err);
+      }
+      parkArr.push({name: sighting.park_name, id: doc[0]._id});
 
-       parkArr.forEach((park) => {
-         sightings.forEach((sighting) => {
-           if (park.name === sighting.park_name) {
-             sighting.park_id = park.id;
-           }
-         });
-       });
+      parkArr.forEach((park) => {
+        sightings.forEach((sighting) => {
+          if (park.name === sighting.park_name) {
+            sighting.park_id = park.id;
+          }
+        });
+      });
+      return cb();
+    });
+  }, (error) => {
+    if (error) return done(error);
+    return done(null);
+  });
+};
 
-       return cb();
-     });
-   }, (error) => {
-     if (error) return done(error);
-     return done(null);
-   });
- };
+const addAnimalId = (done) => {
+  var animalArr = [];
+  async.eachSeries(sightings, (sighting, eachCallback) => {
+    Animals.find({common_name: sighting.animal_name}, (err, doc) => {
+      if (err) {
+        return eachCallback(err);
+      }
+      if (doc.length) {
+        animalArr.push({name: sighting.animal_name, id: doc[0]._id});
+      }
+      animalArr.forEach((animal) => {
+        sightings.forEach((sighting) => {
+          if (animal.name === sighting.animal_name) {
+            sighting.animal_id = animal.id;
+          }
+        });
+      });
+      return eachCallback();
+    });
+  }, (error) => {
+    if (error) return done(error);
+    return done(null);
+  });
+};
 
- const addAnimalId = (done) => {
-   var animalArr = [];
-   async.eachSeries(sightings, (sighting, eachCallback) => {
-     Animals.find({common_name: sighting.animal_name}, (err, doc) => {
-       if (err) {
-         return eachCallback(err);
-       }
-       if (doc.length) {
-         animalArr.push({name: sighting.animal_name, id: doc[0]._id});
-       }
+const addUserId = (done) => {
+  async.eachSeries(sightings, (sighting, eachCallback) => {
+    Users.find((err, doc) => {
+      if (err) {
+        return eachCallback(err);
+      }
+      sighting.observer_id = doc[0]._id;
+      return eachCallback();
+    });
+  }, (error) => {
+    if (error) return done(error);
+    return done(null);
+  });
+};
 
-       animalArr.forEach((animal) => {
-         sightings.forEach((sighting) => {
-           if (animal.name === sighting.animal_name) {
-             sighting.animal_id = animal.id;
-           }
-         });
-       });
+const saveSightings = (done) => {
+  async.eachSeries(sightings, (sighting, eachCallback) => {
+    var newSighting = new Sightings(sighting);
+    newSighting.save((err) => {
+      if (err) {
+        return eachCallback(err);
+      }
+      return eachCallback();
+    });
+  }, (err) => {
+    if (err) {
+      return done(err);
+    }
+    return done();
+  });
+};
 
-       return eachCallback();
-     });
-   }, (error) => {
-     if (error) return done(error);
-     return done(null);
-   });
- };
-
- const addUserId = (done) => {
-   async.eachSeries(sightings, (sighting, eachCallback) => {
-     Users.find((err, doc) => {
-       if (err) {
-         return eachCallback(err);
-       }
-       sighting.observer_id = doc[0]._id;
-       return eachCallback();
-     });
-   }, (error) => {
-     if (error) return done(error);
-     return done(null);
-   });
- };
-
- const saveSightings = (done) => {
-   async.eachSeries(sightings, (sighting, eachCallback) => {
-     var newSighting = new Sightings(sighting);
-     newSighting.save((err) => {
-       if (err) {
-         return eachCallback(err);
-       }
-       return eachCallback();
-     });
-   }, (err) => {
-     if (err) {
-       return done(err);
-     }
-     return done();
-   });
- };
-
- const addParkIdToAnimal = (done) => {
-   const animalIds = [];
-
-   async.eachSeries(sightings, (sighting, cb) => {
-     if (animalIds.indexOf(sighting.animal_id) === -1) {
-       animalIds.push(sighting.animal_id);
-
-       Animals.findById(sighting.animal_id, (err, animal) => {
-         if (err) return cb(err);
-         animal.park_ids = animal.park_ids ? animal.park_ids.concat(sighting.park_id.toString()) : [sighting.park_id.toString()];
-         animal.save((err, updatedAnimal) => {
-           if (err) {
-             return cb(err);
-           }
-           return cb(null);
-         });
-       });
-     } else {
-       cb(null);
-     }
-   }, (err) => {
-     if (err) {
-       return done(err);
-     }
-     let ids = {};
-     ids.animal = sightings[0].animal_id.toString();
-     ids.park = sightings[0].park_id.toString();
-     ids.user = sightings[0].observer_id.toString();
-     return done(null, ids);
-   });
- };
+const addParkIdToAnimal = (done) => {
+  const animalIds = [];
+  async.eachSeries(sightings, (sighting, cb) => {
+    if (animalIds.indexOf(sighting.animal_id) === -1) {
+      animalIds.push(sighting.animal_id);
+      Animals.findById(sighting.animal_id, (err, animal) => {
+        if (err) return cb(err);
+        animal.park_ids = animal.park_ids ? animal.park_ids.concat(sighting.park_id.toString()) : [sighting.park_id.toString()];
+        animal.save((err, updatedAnimal) => {
+          if (err) {
+            return cb(err);
+          }
+          return cb(null);
+        });
+      });
+    } else {
+      cb(null);
+    }
+  }, (err) => {
+    if (err) {
+      return done(err);
+    }
+    let ids = {};
+    ids.animal = sightings[0].animal_id.toString();
+    ids.park = sightings[0].park_id.toString();
+    ids.user = sightings[0].observer_id.toString();
+    return done(null, ids);
+  });
+};
 
 const saveTestData = (cb) => {
   async.waterfall(

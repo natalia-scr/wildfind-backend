@@ -10,7 +10,7 @@ const logger = log4js.getLogger();
 
 sightings = formatSightings(sightings);
 
-mongoose.connect(DB, function (err) {
+mongoose.connect(DB, (err) => {
   if (!err) {
     logger.info('connected to database');
     mongoose.connection.db.dropDatabase();
@@ -19,7 +19,7 @@ mongoose.connect(DB, function (err) {
       addParks,
       addAnimals,
       addSightings
-    ], function (err) {
+    ], (err) => {
       if (err) {
         logger.error('ERROR SEEDING :O');
         console.log(JSON.stringify(err));
@@ -129,10 +129,7 @@ const addAnimalId = (done) => {
       if (err) {
         return cb(err);
       }
-      if (doc.length) {
-        animalArr.push({name: sighting.animal_name, id: doc[0]._id});
-      }
-
+      animalArr.push({name: sighting.animal_name, id: doc[0]._id});
       animalArr.forEach((animal) => {
         sightings.forEach((sighting) => {
           if (animal.name === sighting.animal_name) {
@@ -140,7 +137,6 @@ const addAnimalId = (done) => {
           }
         });
       });
-
       return cb();
     });
   }, (error) => {

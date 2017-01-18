@@ -22,6 +22,10 @@ const AnimalSchema = new Schema({
     type: String,
     required: true
   },
+  small_img: {
+    type: String,
+    required: true
+  },
   park_ids: {
     type: Array,
     required: false,

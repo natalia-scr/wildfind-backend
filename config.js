@@ -7,4 +7,4 @@ module.exports = {
     test: 3010,
     production: 3000
   }
-}
+};

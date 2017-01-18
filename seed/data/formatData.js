@@ -24,7 +24,7 @@ const getWikiData = (callback) => {
     firstGetImg,
     secondGetImg,
     getText
-  ], function (err, res) {
+  ], (err, res) => {
     if (err) {
       return callback(err);
     }

@@ -1,4 +1,4 @@
-const Parks = require('../models/parks');
+const {Parks} = require('../models/models');
 
 module.exports = (callback) => {
   Parks.find((err, doc) => {

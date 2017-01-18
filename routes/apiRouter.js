@@ -3,21 +3,22 @@ const router = express.Router();
 
 const {getParks, getAnimals, getSightings, addUser, getUserSightings, addSighting, getAnimalSightings} = require('../controllers/controllers');
 
-router.post('/adduser', (req, res) => {
+router.post('/adduser', (req, res, next) => {
   addUser(req.body, (err, data) => {
     if (err) {
       if (err === 'Name too long') {
         return res.status(400).json({error: {message: err}});
       }
+      return next(err);
     }
     res.status(200).json({user: data});
   });
 });
 
-router.get('/parks', (req, res) => {
+router.get('/parks', (req, res, next) => {
   getParks((err, data) => {
     if (err) {
-      return res.status(404).json({error: {message: err}});
+      return next(err);
     }
     res.status(200).json({ parks: data });
   });
@@ -27,7 +28,10 @@ router.get('/animals', (req, res, next) => {
   const park = req.query.park;
   getAnimals(park, (err, data) => {
     if (err) {
-      if (err === 'No recordings at this park')   return res.status(404).json(({error: {message: err}}));
+      if (err === 'No recordings at this park') {
+        return res.status(404).json(({error: {message: err}}));
+      }
+
       return next(err);
     }
     res.status(200).json({ animals: data });
