@@ -13,7 +13,7 @@ const router = require('../routes/apiRouter');
 mongoose.connect(db, (err) => {
   if (!err) console.log(`connected to database: ${db}`);
   else {
-    // process.exit();
+    process.exit();
     console.log(err);
   }
 });
