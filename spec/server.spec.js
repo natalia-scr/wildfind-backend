@@ -10,19 +10,19 @@ const PORT = require('../config').PORT[process.env.NODE_ENV];
 const ROOT = `http://localhost:${PORT}`;
 
 const parkKeys = ['name', 'location', 'active', 'lat_lng', '__v', '_id'];
-const animalKeys = ['common_name', 'latin_name', 'taxon_group', 'photo',
+const animalKeys = ['common_name', 'latin_name', 'taxon_group', 'photo', 'small_img',
 'description', 'records', 'abundance', '__v', '_id', 'park_ids'];
-const sightingsKeys = ['_id', 'date', 'park_id', 'animal_id', 'observer_id',
+const sightingsKeys = ['_id', 'date', 'park_id', 'animal_id', 'observer_id', 'animal_name',
 'obs_abundance', 'obs_comment', 'lat_lng', '__v'];
 const userLogKeys = ['_id', 'date', 'park_id', 'animal_id', 'observer_id',
-'obs_abundance', 'obs_comment', 'lat_lng', '__v', 'taxon_group', 'latin_name', 'common_name'];
+'obs_abundance', 'obs_comment', 'lat_lng', '__v', 'taxon_group', 'latin_name', 'animal_name'];
 
 const newSightingReq = {
 	'sighting': {
   'lat_lng': {'latitude': 5555, 'longitude': 66666},
   'obs_abundance': '6',
   'obs_comment': 'Feeding her chicks'
-}
+	}
 };
 
 const invalidID = {error: {message: 'Invalid ID'}};
@@ -39,6 +39,7 @@ describe.only('app', () => {
         newSightingReq.sighting.park_id = reqIDs.park;
         newSightingReq.sighting.animal_id = reqIDs.animal;
         newSightingReq.sighting.observer_id = reqIDs.user;
+				newSightingReq.sighting.animal_name = reqIDs.animal_name;
         reqIDs.invalid_id = '5842ddc7dcbf6d3bc883';
         reqIDs.incorrect_id = '584666dcbec52a5b9d852942';
         console.log(reqIDs);
@@ -69,7 +70,7 @@ describe.only('app', () => {
         .end((err, res) => {
           if (err) throw err;
           expect(res.statusCode).to.equal(200);
-          expect(res.body.parks.length).to.equal(1);
+          expect(res.body.parks.length).to.equal(3);
           expect(res.body.parks).to.be.an('array');
           expect(res.body.parks[0]).to.have.all.keys(parkKeys);
           done();

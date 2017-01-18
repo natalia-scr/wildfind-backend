@@ -39,7 +39,6 @@ module.exports = (user, finalCallback) => {
         sighting = sighting.toJSON();
         sighting.taxon_group = animals[0].taxon_group;
         sighting.latin_name = animals[0].latin_name;
-        sighting.common_name = animals[0].common_name;
         mapCallback(null, sighting);
       });
     }, (err, res) => {
