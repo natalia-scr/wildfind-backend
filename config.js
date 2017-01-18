@@ -7,4 +7,4 @@ module.exports = {
     test: 3010,
     dev: 3000
   }
-}
+};

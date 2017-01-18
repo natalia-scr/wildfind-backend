@@ -1,6 +1,6 @@
 const _ = require('underscore');
 
-const Sightings = require('../models/sightings');
+const {Sightings} = require('../models/models');
 
 module.exports = (park, callback) => {
   if (!park) {

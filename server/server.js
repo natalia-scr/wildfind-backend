@@ -13,7 +13,6 @@ const router = require('../routes/apiRouter');
 mongoose.connect(db, (err) => {
   if (!err) console.log(`connected to database: ${db}`);
   else {
-    // process.exit();
     console.log(err);
   }
 });
@@ -22,11 +21,11 @@ app.use(bodyParser.json());
 
 app.use('/api', router);
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   res.status(200).json({name: 'WildFind App'});
 });
 
-app.use(function (err, req, res, next) {
+app.use((err, req, res, next) => {
   if (err === 'Invalid ID') return res.status(400).json({error: {message: 'Invalid ID'}});
   else return res.status(404).json({reason: 'Not Found'});
 });
