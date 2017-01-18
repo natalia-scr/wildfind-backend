@@ -10,7 +10,7 @@ const animals = [{
   'common_name': 'Mandarin Duck',
   'wiki_name': 'mandarin_duck',
   'photo': 'https://upload.wikimedia.org/wikipedia/commons/4/43/Pair_of_mandarin_ducks.jpg',
-  'smallImg': 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Pair_of_mandarin_ducks.jpg/200px-Pair_of_mandarin_ducks.jpg',
+  'small_img': 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Pair_of_mandarin_ducks.jpg/200px-Pair_of_mandarin_ducks.jpg',
   'description': 'The mandarin duck (Aix galericulata) is a perching duck species found in East Asia. It is medium-sized, at 41–49 cm (16–19 in) long with a 65–75 cm (26–30 in) wingspan. It is closely related to the North American wood duck, the only other member of the genus Aix. Aix is an Ancient Greek word used by Aristotle to refer to an unknown diving bird, and galericulata is the Latin for a wig, derived from galerum, a cap or bonnet.'
 }, {
   'taxon_group': 'Bird',
@@ -18,7 +18,7 @@ const animals = [{
   'common_name': 'Redwing',
   'wiki_name': 'redwing',
   'photo': 'https://upload.wikimedia.org/wikipedia/commons/c/c1/Redwing_Turdus_iliacus.jpg',
-  'smallImg': 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Redwing_Turdus_iliacus.jpg/200px-Redwing_Turdus_iliacus.jpg',
+  'small_img': 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Redwing_Turdus_iliacus.jpg/200px-Redwing_Turdus_iliacus.jpg',
   'description': 'The redwing (Turdus iliacus) is a bird in the thrush family, Turdidae, native to Europe and Asia, slightly smaller than the related song thrush.\n\n'
 }, {
   'taxon_group': 'Bird',
@@ -26,7 +26,7 @@ const animals = [{
   'common_name': 'Feral Pigeon',
   'wiki_name': 'feral_pigeon',
   'photo': 'https://upload.wikimedia.org/wikipedia/commons/4/4d/Rock_Pigeon_Columba_livia.jpg',
-  'smallImg': 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Rock_Pigeon_Columba_livia.jpg/200px-Rock_Pigeon_Columba_livia.jpg',
+  'small_img': 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Rock_Pigeon_Columba_livia.jpg/200px-Rock_Pigeon_Columba_livia.jpg',
   'description': 'Feral pigeons (Columba livia domestica), also called city doves, city pigeons, or street pigeons, are pigeons that are derived from the domestic pigeons that have returned to the wild. The domestic pigeon was originally bred from the wild rock dove, which naturally inhabits sea-cliffs and mountains. Rock (i.e., \'wild\'), domestic, and feral pigeons are all the same species and will readily interbreed. Feral pigeons find the ledges of buildings to be a substitute for sea cliffs, have become adapted to urban life, and are abundant in towns and cities throughout much of the world.'
 }, {
   'taxon_group': 'Bird',
@@ -34,7 +34,7 @@ const animals = [{
   'common_name': 'Tufted Duck',
   'wiki_name': 'tufted_duck',
   'photo': 'https://upload.wikimedia.org/wikipedia/commons/e/eb/Tufted-Duck-male-female.jpg',
-  'smallImg': 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Tufted-Duck-male-female.jpg/144px-Tufted-Duck-male-female.jpg',
+  'small_img': 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Tufted-Duck-male-female.jpg/144px-Tufted-Duck-male-female.jpg',
   'description': 'The Tufted duck (Aythya fuligula) is a small diving duck with a population of close to one million birds. The scientific name is derived from Ancient Greek aithuia an unidentified seabird mentioned by authors including Hesychius and Aristotle, and Latin, fuligo \'soot\' and gula \'throat\'.'
 }];
 
@@ -250,6 +250,7 @@ const addParkIdToAnimal = (done) => {
     ids.animal = sightings[0].animal_id.toString();
     ids.park = sightings[0].park_id.toString();
     ids.user = sightings[0].observer_id.toString();
+    ids.animal_name = sightings[0].animal_name;
     return done(null, ids);
   });
 };

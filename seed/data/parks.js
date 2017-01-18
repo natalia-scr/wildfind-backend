@@ -17,11 +17,11 @@ module.exports = [{
   active: false
 },
 {
-  name: 'Heaton Park',
+  name: 'Northcoders',
   location: 'Manchester',
   lat_lng: {
-    latitude: 53.451562,
-    longitude: -2.249320
+    latitude: 53.501566,
+    longitude: -2.195458
   },
   active: false
 }];

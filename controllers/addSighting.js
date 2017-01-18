@@ -10,6 +10,7 @@ module.exports = (sighting, callback) => {
     park_id: sighting.park_id,
     animal_id: sighting.animal_id,
     observer_id: sighting.observer_id,
+    animal_name: sighting.animal_name,
     lat_lng: sighting.lat_lng,
     date: new Date(),
     obs_abundance: sighting.obs_abundance,

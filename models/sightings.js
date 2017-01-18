@@ -14,6 +14,10 @@ const SightingSchema = new Schema({
     type: Schema.Types.ObjectId,
     required: true
   },
+  animal_name: {
+    type: String,
+    required: true
+  },
   lat_lng: {
     latitude: {
       type: Number,
