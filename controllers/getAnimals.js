@@ -3,16 +3,22 @@ const Animals = require('../models/animals');
 const Sightings = require('../models/sightings');
 
 module.exports = function getAnimals (park, finalCallback) {
+  if (park) {
+    if (park.length !== 24) {
+      return finalCallback('Invalid ID');
+    }
+  }
   async.waterfall(
     [
       findAnimals,
       addSightingTotal
     ],
     (err, data) => {
-      // call finalCallback
+      if (data.length === 0) {
+        err = 'No recordings at this park';
+      }
       if (err) {
-        console.log(err, 'Could not find animals');
-        finalCallback(err);
+        return finalCallback(err);
       }
       finalCallback(null, data);
     }
@@ -29,8 +35,6 @@ module.exports = function getAnimals (park, finalCallback) {
   }
 
   function addSightingTotal (animals, callback) {
-      // async map over the articles
-      // find the comment count and add it
     async.map(animals, (animal, mapCallback) => {
       Sightings.find({animal_id: animal._id}, (err, sightings) => {
         if (err) {

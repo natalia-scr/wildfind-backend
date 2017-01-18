@@ -1,7 +1,7 @@
 let {animals, parks, sightings} = require('./data/data');
 const {Sightings, Animals, Parks, Users} = require('../models/models');
 const formatSightings = require('./data/formatData');
-const {DB} = require('../config.js');
+const DB = require('../config.js').DB.dev;
 
 const mongoose = require('mongoose');
 const async = require('async');
@@ -10,7 +10,7 @@ const logger = log4js.getLogger();
 
 sightings = formatSightings(sightings);
 
-mongoose.connect(DB.dev, function (err) {
+mongoose.connect(DB, function (err) {
   if (!err) {
     logger.info('connected to database');
     mongoose.connection.db.dropDatabase();
@@ -90,12 +90,10 @@ const addSightings = (done) => {
     addParkIdToAnimal
   ], (err) => {
     if (err) {
-      logger.error('ERROR SEEDING :O');
       console.log(JSON.stringify(err));
-      process.exit();
+      done();
     }
-    logger.info('DONE SEEDING!!');
-    process.exit();
+    done();
   });
 };
 
@@ -191,14 +189,12 @@ const addParkIdToAnimal = (done) => {
       animalIds.push(sighting.animal_id);
 
       Animals.findById(sighting.animal_id, (err, animal) => {
-        // animal = animal[0];
         if (err) return cb(err);
         animal.park_ids = animal.park_ids ? animal.park_ids.concat(sighting.park_id.toString()) : [sighting.park_id.toString()];
         animal.save((err, updatedAnimal) => {
           if (err) {
             return cb(err);
           }
-          console.log('save');
           return cb(null);
         });
       });
