@@ -10,15 +10,9 @@ const db = config.DB[process.env.NODE_ENV] || process.env.DB;
 const PORT = config.PORT[process.env.NODE_ENV];
 const router = require('../routes/apiRouter');
 
-console.log({
-  env: process.env.NODE_ENV,
-  db
-});
-
 mongoose.connect(db, (err) => {
   if (!err) console.log(`connected to database: ${db}`);
   else {
-    // process.exit();
     console.log(err);
   }
 });
