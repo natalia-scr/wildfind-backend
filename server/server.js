@@ -1,4 +1,4 @@
-if (!process.env.NODE_ENV) process.env.NODE_ENV = 'dev';
+if (!process.env.NODE_ENV) process.env.NODE_ENV = 'production';
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -13,18 +13,17 @@ const router = require('../routes/apiRouter');
 mongoose.connect(db, (err) => {
   if (!err) console.log(`connected to database: ${db}`);
   else {
-    // process.exit();
     console.log(err);
   }
 });
 
 app.use(bodyParser.json());
 
-app.use('/api', router);
-
 app.get('/', function (req, res) {
   res.status(200).json({name: 'WildFind App'});
 });
+
+app.use('/api', router);
 
 app.use(function (err, req, res, next) {
   if (err === 'Invalid ID') return res.status(400).json({error: {message: 'Invalid ID'}});
