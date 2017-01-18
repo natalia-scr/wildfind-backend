@@ -27,7 +27,7 @@ router.get('/animals', (req, res, next) => {
   const park = req.query.park;
   getAnimals(park, (err, data) => {
     if (err) {
-      if (err === 'No recordings at this park') { return res.status(404).json(({error: {message: err}})); }
+      if (err === 'No recordings at this park')   return res.status(404).json(({error: {message: err}}));
       return next(err);
     }
     res.status(200).json({ animals: data });
