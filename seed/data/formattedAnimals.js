@@ -526,4 +526,49 @@ module.exports = [{
     "photo": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Eastern_Grey_Squirrel.jpg",
     "small_img": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Eastern_Grey_Squirrel.jpg/200px-Eastern_Grey_Squirrel.jpg",
     "description": "Sciurus carolinensis, common name eastern gray squirrel or grey squirrel depending on region, is a tree squirrel in the genus Sciurus. It is native to eastern North America, but has since been introduced to European regions where it has become an invasive species."
+},
+{
+    "taxon_group": "Bird",
+    "latin_name": "Buteo buteo",
+    "common_name": "Buzzard",
+    "wiki_name": "common_buzzard",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Buteo_buteo_-Netherlands-8.jpg",
+    "small_img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Buteo_buteo_-Netherlands-8.jpg/150px-Buteo_buteo_-Netherlands-8.jpg",
+    "description": "The common buzzard (Buteo buteo) is a medium-to-large bird of prey whose range covers most of Europe and extends into Asia. Over much of its range, it is resident year-round, but birds from the colder parts of the northern hemisphere typically migrate south (some well into the southern hemisphere) for the northern winter.\n\n"
+},
+{
+    "taxon_group": "Bird",
+    "latin_name": "Delichon urbicum",
+    "common_name": "House Martin",
+    "wiki_name": "common_house_martin",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Mehlschwalbe_Delichon_urbicum.jpg",
+    "small_img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Mehlschwalbe_Delichon_urbicum.jpg/200px-Mehlschwalbe_Delichon_urbicum.jpg",
+    "description": "The common house martin (Delichon urbicum), sometimes called the northern house martin or, particularly in Europe, just house martin, is a migratory passerine bird of the swallow family which breeds in Europe, north Africa and temperate Asia; and winters in sub-Saharan Africa and tropical Asia. It feeds on insects which are caught in flight, and it migrates to climates where flying insects are plentiful. It has a blue head and upperparts, white rump and pure white underparts, and is found in both open country and near human habitation. It is similar in appearance to the two other martin species of the genus Delichon, which are both endemic to eastern and southern Asia. It has two accepted subspecies.\nBoth the scientific and colloquial name of the bird are related to its use of human-made structures. It builds a closed cup nest from mud pellets under eaves or similar locations on buildings usually in colonies.\nIt is hunted by the Eurasian hobby (Falco subbuteo), and like other birds is affected by internal parasites and external fleas and mites, although its large range and population mean that it is not threatened globally."
+},
+{
+    "taxon_group": "Bird",
+    "latin_name": "Anthus pratensis",
+    "common_name": "Meadow Pipit",
+    "wiki_name": "meadow_pipit",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Wiesenpieper_Meadow_pipit.jpg",
+    "small_img": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Wiesenpieper_Meadow_pipit.jpg/200px-Wiesenpieper_Meadow_pipit.jpg",
+    "description": "The meadow pipit (Anthus pratensis) is a small passerine bird which breeds in much of northwestern Eurasia, from southeastern Greenland and Iceland east to just east of the Ural Mountains in Russia, and south to central France and Romania; there is also an isolated population in the Caucasus Mountains. It is migratory over most of its range, wintering in Southern Europe, North Africa and Southwestern Asia, but is resident year-round in Western Europe. However, even here, many birds move to the coast or lowlands in winter.\n\nThis is a widespread and often abundant small pipit, 14.5–15 cm long and 15–22 g weight. It is an undistinguished looking species on the ground, mainly brown above and buff below, with darker streaking on most of its plumage; the tail is brown, with narrow white side edges. It has a thin bill and pale pinkish-yellow legs; the hind claw is notably long, longer than the rest of the hind toe. The call is a weak tsi-tsi. The simple repetitive song is given in a short song flight. Birds breeding in Ireland and western Scotland are slightly darker coloured than those in other areas, and are often distinguished as the subspecies Anthus pratensis whistleri, though it intergrades clinally with nominate Anthus pratensis pratensis found in the rest of the species' range.\nIt is primarily a species of open habitats, either uncultivated or low-intensity agriculture, such as pasture, bogs, and moorland, but also occurs in low numbers in arable croplands. In winter, it also uses saltmarshes and sometimes open woodlands. It is a fairly terrestrial pipit, always feeding on the ground, but will use elevated perches such as shrubs, fence lines or electricity wires as vantage points to watch for predators.\nIt is similar to the red-throated pipit Anthus cervinus, which is more heavily streaked and (in summer only) has an orange-red throat, and to the tree pipit Anthus trivialis, which is slightly larger, less heavily streaked, and has stronger facial markings and a shorter hind claw. The song of the meadow pipit accelerates towards the end while that of the tree pipit slows down.\n\nIts food is primarily insects and other invertebrates, mostly small items less than 5 mm long. It also eats the seeds of grasses, sedges, rushes and heather, and crowberry berries, mainly in winter.\nThe nest is on the ground hidden in dense vegetation, with 2–7 (most often 3–5) eggs; the eggs hatch after 11–15 days, with the chicks fledging 10–14 days after hatching. Two broods are commonly raised each year. This species is one of the most important nest hosts of the cuckoo, and it is also an important prey species for merlins and hen harriers.\nThe estimated total population is 12 million pairs. It is an abundant species in the north of its range, and generally the commonest breeding bird in most of upland Britain, but less common further south. Breeding densities range from 80 pairs per square kilometre in northern Scandinavia, to 5–20 pairs per square kilometre in grassland in the south of the breeding range, and just one pair per square kilometre in arable farmland. There are a small number of isolated breeding records from south of the main range, in the mountains of Spain, Italy, and the northern Balkans.\nThe generic name 'pipit', first documented by Thomas Pennant in 1768, is onomatopoeic, from the call note of this species. In colloquial use by birders in the UK the name meadow pipit is often abbreviated to \"mippit\". Old folk names, no longer used, include \"chit lark\", \"peet lark\", \"tit lark\" and \"titling\"; these refer to its small size and superficial similarity to a lark. The scientific name is from Latin. Anthus is the name for a small bird of grasslands, and the specific pratensis means \"of a meadow \", from pratum, \"meadow\"."
+},
+{
+    "taxon_group": "Bird",
+    "latin_name": "Hirundo rustica",
+    "common_name": "Swallow",
+    "wiki_name": "swallow",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Red-rumpedSwallow01.jpg",
+    "small_img": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Red-rumpedSwallow01.jpg/133px-Red-rumpedSwallow01.jpg",
+    "description": "The swallows and martins are a group of passerine birds in the family Hirundinidae that are characterised by their adaptation to aerial feeding. Swallow is used colloquially in Europe as a synonym for the barn swallow.\nThis family comprises two subfamilies: Pseudochelidoninae (the river martins of the genus Pseudochelidon) and Hirundininae (all other swallows and martins). Within the Old World, the name \"martin\" tends to be used for the squarer-tailed species, and the name \"swallow\" for the more fork-tailed species; however, there is no scientific distinction between these two groups. Within the New World, \"martin\" is reserved for members of the genus Progne. (These two systems are responsible for the sand martin being called \"bank swallow\" in the New World.) The entire family contains around 83 species in 19 genera.\nThe swallows have a cosmopolitan distribution across the world and breed on all the continents except Antarctica. It is believed that this family originated in Africa as hole-nesters; Africa still has the greatest diversity of the species. They also occur on a number of oceanic islands. A number of European and North American species are long-distance migrants; by contrast, the West and South African swallows are non-migratory."
+},
+{
+    "taxon_group": "Bird",
+    "latin_name": "Anas crecca",
+    "common_name": "Teal",
+    "wiki_name": "eurasian_teal",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Flickr_-_Rainbirder_-_EurasianTeal_in_flight_%28cropped%29.jpg",
+    "small_img": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Flickr_-_Rainbirder_-_EurasianTeal_in_flight_%28cropped%29.jpg/130px-Flickr_-_Rainbirder_-_EurasianTeal_in_flight_%28cropped%29.jpg",
+    "description": "The Eurasian teal or common teal (Anas crecca) is a common and widespread duck which breeds in temperate Eurasia and migrates south in winter. The Eurasian teal is often called simply the teal due to being the only one of these small dabbling ducks in much of its range. The bird gives its name to the blue-green colour teal.\nIt is a highly gregarious duck outside the breeding season and can form large flocks. It is commonly found in sheltered wetlands and feeds on seeds and aquatic invertebrates. The North American green-winged teal (A. carolinensis) was formerly (and sometimes is still) considered a subspecies of A. crecca."
 }]

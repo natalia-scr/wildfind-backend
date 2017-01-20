@@ -42,7 +42,7 @@ const firstGetImg = (done) => {
         if (err) mapCallback(err);
         for (var key in res.body.query.pages) {
           animal.photo = res.body.query.pages[key].pageimage;
-          animal.smallImg = res.body.query.pages[key].thumbnail.source;
+          animal.small_img = res.body.query.pages[key].thumbnail.source;
           mapCallback(null, animal);
         }
       });
@@ -90,8 +90,10 @@ const getText = (newAnimalsData, done) => {
 
 const save = (err, res) => {
   if (err) return console.log(err);
-  fs.writeFile(`formattedAnimals.js`, JSON.stringify(res), (err) => {
+  fs.writeFile(`newanimals.js`, JSON.stringify(res), (err) => {
     if (err) console.log(err);
     console.log('file saved');
   });
 };
+
+// getWikiData(save);

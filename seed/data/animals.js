@@ -187,7 +187,7 @@ module.exports = [
   }, {
     'taxon_group': 'Bird',
     'latin_name': 'Regulus ignicapilla',
-  'common_name': 'Firecrest',
+    'common_name': 'Firecrest',
     'wiki_name': 'common_firecrest'
   }, {
     'taxon_group': 'Bird',
@@ -329,5 +329,35 @@ module.exports = [
     'latin_name': 'Sciurus carolinensis',
     'common_name': 'Gray Squirrel',
     'wiki_name': 'eastern_gray_squirrel'
+  }, {
+  {
+    'taxon_group': 'Bird',
+    'latin_name': 'Buteo buteo',
+    'common_name': 'Buzzard',
+    'wiki_name': 'common_buzzard'
+  },
+  {
+    'taxon_group': 'Bird',
+    'latin_name': 'Delichon urbicum',
+    'common_name': 'House Martin',
+    'wiki_name': 'common_house_martin'
+  },
+  {
+    'taxon_group': 'Bird',
+    'latin_name': 'Anthus pratensis',
+    'common_name': 'Meadow Pipit',
+    'wiki_name': 'meadow_pipit'
+  },
+  {
+    'taxon_group': 'Bird',
+    'latin_name': 'Hirundo rustica',
+    'common_name': 'Swallow',
+    'wiki_name': 'swallow'
+  },
+  {
+    'taxon_group': 'Bird',
+    'latin_name': 'Anas crecca',
+    'common_name': 'Teal',
+    'wiki_name': 'eurasian_teal'
   }
 ];

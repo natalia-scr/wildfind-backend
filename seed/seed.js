@@ -1,7 +1,7 @@
 let {animals, parks, sightings} = require('./data/data');
 const {Sightings, Animals, Parks, Users} = require('../models/models');
 const formatSightings = require('./data/formatData');
-const DB = require('../config.js').DB.dev;
+const DB = require('../config.js').DB.production;
 
 const mongoose = require('mongoose');
 const async = require('async');
