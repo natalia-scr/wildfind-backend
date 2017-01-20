@@ -89,7 +89,8 @@ router.post('/addsighting', (req, res, next) => {
       if (err === 'Above maximum comment length') {
         return res.status(400).json({error: {message: err}});
       }
-      return next(err);
+      return res.status(400).json({reason: err})
+      // return next(err);
     }
     res.status(200).json({sighting: data});
   });
