@@ -27,7 +27,7 @@ app.use('/api', router);
 
 app.use(function (err, req, res, next) {
   if (err === 'Invalid ID') return res.status(400).json({error: {message: 'Invalid ID'}});
-  else return res.status(404).json({reason: 'Not Found'});
+  else return res.status(404).json({reason: err});
 });
 
 app.listen(process.env.PORT || PORT, () => {

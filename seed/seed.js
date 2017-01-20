@@ -1,7 +1,8 @@
 let {animals, parks, sightings} = require('./data/data');
 const {Sightings, Animals, Parks, Users} = require('../models/models');
 const formatSightings = require('./data/formatData');
-const DB = require('../config.js').DB.dev;
+const {addLocalData} = require('./data/data');
+const DB = require('../config.js').DB.production;
 
 const mongoose = require('mongoose');
 const async = require('async');
@@ -9,6 +10,7 @@ const log4js = require('log4js');
 const logger = log4js.getLogger();
 
 sightings = formatSightings(sightings);
+sightings = addLocalData(sightings);
 
 mongoose.connect(DB, (err) => {
   if (!err) {
@@ -162,6 +164,7 @@ const addUserId = (done) => {
 
 const saveSightings = (done) => {
   async.eachSeries(sightings, (sighting, cb) => {
+    console.log(sighting, 'dighitj');
     var newSighting = new Sightings(sighting);
     newSighting.save((err) => {
       if (err) {

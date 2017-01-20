@@ -17,8 +17,11 @@ module.exports = (sighting, callback) => {
     obs_comment: sighting.obs_comment
   });
 
+  console.log(newSighting);
+
   newSighting.save((err) => {
     if (err) {
+      console.log('there is err');
       return callback(err);
     }
     callback(null, newSighting);
