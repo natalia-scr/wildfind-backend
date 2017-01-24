@@ -164,7 +164,6 @@ const addUserId = (done) => {
 
 const saveSightings = (done) => {
   async.eachSeries(sightings, (sighting, cb) => {
-    console.log(sighting, 'dighitj');
     var newSighting = new Sightings(sighting);
     newSighting.save((err) => {
       if (err) {
