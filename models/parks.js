@@ -23,6 +23,18 @@ const ParkSchema = new Schema({
   active: {
     type: Boolean,
     required: true
+  },
+  quote: {
+    type: String
+  },
+  quoteAuthor: {
+    type: String
+  },
+  quoteTitle: {
+    type: String
+  },
+  info: {
+    type: String
   }
 });
 
