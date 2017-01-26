@@ -35,6 +35,9 @@ const ParkSchema = new Schema({
   },
   info: {
     type: String
+  },
+  img: {
+    type: String
   }
 });
 
