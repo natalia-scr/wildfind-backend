@@ -74,7 +74,7 @@ let localSightings = [
 
 module.exports = (sightings) => {
   var mappedData = localSightings.map((sighting) => {
-    sighting.park_name = 'Northcoders';
+    sighting.park_name = 'Platt Fields Park';
     sighting.date = '18/01/2017';
     sighting.lat_lng = {
       latitude: sighting.latitude,
