@@ -18,6 +18,10 @@ const AnimalSchema = new Schema({
     type: String,
     required: true
   },
+  short_des: {
+    type: String,
+    required: true
+  },
   photo: {
     type: String,
     required: true
