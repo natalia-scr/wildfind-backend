@@ -20,7 +20,7 @@ module.exports = [{
     longitude: -2.249320
   },
   active: false,
-  img: 'http://s2.evcdn.com/images/edpborder500/I0-001/002/446/933-2.jpeg_/platt-fields-park-33.jpeg'
+  img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Platt_Fields_Park_2.jpg/400px-Platt_Fields_Park_2.jpg'
 },
 {
   name: 'Heaton Park',
@@ -31,24 +31,4 @@ module.exports = [{
   },
   active: false,
   img: 'https://media-cdn.tripadvisor.com/media/photo-s/07/c4/b3/a3/heaton-park.jpg'
-},
-{
-  name: 'Tatton Park',
-  location: 'Tatton, Manchester',
-  lat_lng: {
-    latitude: 53.501566,
-    longitude: -2.195458
-  },
-  active: false,
-  img: 'http://www.playingwithflowers.co.uk/wp-content/uploads/2012/05/Trine-Messenger-and-Pont-de-Singe-Tatton-Park-Biennial-20122.jpg'
-},
-{
-  name: 'Wythenshawe Park',
-  location: 'Wythenshawe, Manchester',
-  lat_lng: {
-    latitude: 53.501566,
-    longitude: -2.195458
-  },
-  active: false,
-  img: 'http://i3.manchestereveningnews.co.uk/incoming/article639712.ece/ALTERNATES/s615/C_71_article_1469306_long_teaser_group_long_teaser_image.jpg'
 }];
