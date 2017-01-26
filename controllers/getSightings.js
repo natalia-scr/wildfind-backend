@@ -16,7 +16,7 @@ module.exports = (park, callback) => {
       return callback(err);
     }
     let sample = [];
-    while (sample.length < 10) {
+    while (sample.length < 13) {
       sample.push(sightings[Math.floor(Math.random() * sightings.length)]);
     }
     let uniqueDoc = _.uniq(sample, (sighting) => {
