@@ -21,11 +21,29 @@ module.exports = [{
   active: false
 },
 {
-  name: 'Northcoders',
-  location: 'Sharp Project, Manchester',
+  name: 'Heaton Park',
+  location: 'Blackley, Manchester',
   lat_lng: {
     latitude: 53.501566,
     longitude: -2.195458
   },
-  active: true
+  active: false
+},
+{
+  name: 'Tatton Park',
+  location: 'Tatton, Manchester',
+  lat_lng: {
+    latitude: 53.501566,
+    longitude: -2.195458
+  },
+  active: false
+},
+{
+  name: 'Wythenshawe Park',
+  location: 'Wythenshawe, Manchester',
+  lat_lng: {
+    latitude: 53.501566,
+    longitude: -2.195458
+  },
+  active: false
 }];
