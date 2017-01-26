@@ -1,6 +1,6 @@
 module.exports = [{
   name: 'Alexandra Park',
-  location: 'Manchester',
+  location: 'Whalley Range, Manchester',
   lat_lng: {
     latitude: 53.451562,
     longitude: -2.249320
@@ -13,7 +13,7 @@ module.exports = [{
 },
 {
   name: 'Platt Fields Park',
-  location: 'Manchester',
+  location: 'Fallowfield, Manchester',
   lat_lng: {
     latitude: 53.451562,
     longitude: -2.249320
@@ -22,10 +22,10 @@ module.exports = [{
 },
 {
   name: 'Northcoders',
-  location: 'Manchester',
+  location: 'Sharp Project, Manchester',
   lat_lng: {
     latitude: 53.501566,
     longitude: -2.195458
   },
-  active: false
+  active: true
 }];

@@ -16,11 +16,14 @@ module.exports = (park, callback) => {
       return callback(err);
     }
     let sample = [];
-    while (sample.length < 10) {
+    while (sample.length < 13) {
       sample.push(sightings[Math.floor(Math.random() * sightings.length)]);
     }
-    const uniqueDoc = _.uniq(sample, (sighting) => {
+    let uniqueDoc = _.uniq(sample, (sighting) => {
       return sighting.animal_id.toString();
+    });
+    uniqueDoc = _.uniq(uniqueDoc, (sighting) => {
+      return JSON.stringify(sighting.lat_lng);
     });
     callback(null, uniqueDoc);
   });
